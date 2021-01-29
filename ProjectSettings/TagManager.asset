@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Interactable
   - LampLevel1
+  - Cigarette
   layers:
   - Default
   - TransparentFX

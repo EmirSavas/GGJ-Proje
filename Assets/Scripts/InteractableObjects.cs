@@ -16,6 +16,7 @@ public class InteractableObjects : MonoBehaviour
     public Light level1LampLight2;
     public AudioSource lampSound;
     public AudioSource lampBuzzSound;
+    public bool isClicked = false;
 
     #endregion
 
@@ -52,6 +53,7 @@ public class InteractableObjects : MonoBehaviour
                         lampSound.Play();
                         lampBuzzSound.PlayDelayed(0.5f);
                         level1LampOpen = true;
+                        isClicked = true;
                     }
                     else if(level1LampOpen)
                     {
@@ -65,9 +67,9 @@ public class InteractableObjects : MonoBehaviour
                     
                 }
                 
-                else if (raycastHit.collider.CompareTag("Cigarette"))
+                else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
-                    
+                    //Cigarette Audio
                 }
 
             }
