@@ -19,7 +19,6 @@ public class InteractableObjects : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
             if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
             {
                 Debug.Log(raycastHit.collider.name);
