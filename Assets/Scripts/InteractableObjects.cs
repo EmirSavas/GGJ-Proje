@@ -17,7 +17,7 @@ public class InteractableObjects : MonoBehaviour
     public Light level1LampLight2;
     public AudioSource lampSound;
     public AudioSource lampBuzzSound;
-    public bool isClicked = false;
+    private bool isClicked = false;
 
     #endregion
 
@@ -27,12 +27,30 @@ public class InteractableObjects : MonoBehaviour
     
 
     #endregion
+
+    #region TV
+
+    public Light tvLight;
+    public MeshRenderer tvMesh;
+    public Material tvMatLight;
+    private bool tvOpen = false;
+
+    #endregion
+
+
+    #region Whiskey
+
+    public Light wLight;
+
+    #endregion
+
+
+    #region Phone
+
+    public MeshRenderer phoneMesh;
+
+    #endregion
     
-    
-    void Start()
-    {
-        
-    }
 
 
     void Update()
@@ -72,6 +90,33 @@ public class InteractableObjects : MonoBehaviour
                 {
                     //Cigarette Audio
                     SceneManager.LoadScene("LivingRoom");
+                }
+                
+                else if (raycastHit.collider.CompareTag("TVController"))
+                {
+
+                    if (!tvOpen)
+                    {
+                        tvMesh.material = tvMatLight;
+                        tvLight.intensity = 3f;
+                        wLight.intensity = 5f;
+                        tvOpen = true;
+                        
+                    }
+                    else if (tvOpen)
+                    {
+                        tvMesh.material = basicGrey;
+                        tvLight.intensity = 0f;
+                        wLight.intensity = 0f;
+                        tvOpen = false;
+                    }
+                    
+                }
+                
+                else if (raycastHit.collider.CompareTag("Phone"))
+                {
+                    //Phone Audio Stop
+                    phoneMesh.material = basicGrey;
                 }
 
             }

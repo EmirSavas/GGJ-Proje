@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - LampLevel1
   - Cigarette
+  - TVController
+  - Phone
   layers:
   - Default
   - TransparentFX
