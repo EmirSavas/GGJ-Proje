@@ -56,6 +56,7 @@ MonoBehaviour:
   tvMesh: {fileID: 0}
   tvMatLight: {fileID: 2100000, guid: 8b3f87f86d4feae4e94ab81980765a71, type: 2}
   wLight: {fileID: 0}
+  phoneMesh: {fileID: 0}
 --- !u!1 &3354055372157125828
 GameObject:
   m_ObjectHideFlags: 0

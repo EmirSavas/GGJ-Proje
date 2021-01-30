@@ -50,6 +50,18 @@ public class InteractableObjects : MonoBehaviour
     public MeshRenderer phoneMesh;
 
     #endregion
+
+    #region WashingMachine
+
+    
+
+    #endregion
+
+    #region Mirror
+
+    
+
+    #endregion
     
 
 
@@ -89,7 +101,7 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
                     //Cigarette Audio
-                    SceneManager.LoadScene("LivingRoom");
+                    SceneManager.LoadScene("OkyanusLivingRoom");
                 }
                 
                 else if (raycastHit.collider.CompareTag("TVController"))
@@ -117,6 +129,23 @@ public class InteractableObjects : MonoBehaviour
                 {
                     //Phone Audio Stop
                     phoneMesh.material = basicGrey;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Whiskey") && tvOpen)
+                {
+                    //Whiskey Drink Sound
+                    SceneManager.LoadScene("OkyanusBathroom");
+                }
+                
+                else if (raycastHit.collider.CompareTag("WashingMachine"))
+                {
+                    //Sound
+                }
+                
+                else if (raycastHit.collider.CompareTag("Mirror"))
+                {
+                    //Sound
+                    SceneManager.LoadScene("Street1");
                 }
 
             }

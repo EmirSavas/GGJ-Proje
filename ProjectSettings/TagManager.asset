@@ -10,6 +10,9 @@ TagManager:
   - Cigarette
   - TVController
   - Phone
+  - WashingMachine
+  - Mirror
+  - Whiskey
   layers:
   - Default
   - TransparentFX

@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OkyanusBedroom.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/OkyanusLivingRoom.unity
+    guid: 4a2b7d988adc1224fbc9bafe3a8480a8
+  - enabled: 1
+    path: Assets/Scenes/OkyanusBathroom.unity
+    guid: 13f9ee6b53a45b646b656a6ee560dfc3
+  - enabled: 1
+    path: Assets/Scenes/Street1.unity
+    guid: 9eeda58446446194dab4e900bc8d0fd5
   m_configObjects: {}
