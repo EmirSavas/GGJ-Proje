@@ -353,6 +353,11 @@ PrefabInstance:
       propertyPath: level1LampLight2
       value: 
       objectReference: {fileID: 5111265571027914714}
+    - target: {fileID: 3354055372157125828, guid: 5a2d64eeeee823d479a7e9bbe005dfdb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2d64eeeee823d479a7e9bbe005dfdb, type: 3}
 --- !u!1001 &5111265571027914713
