@@ -147,6 +147,12 @@ public class InteractableObjects : MonoBehaviour
                     //Sound
                     SceneManager.LoadScene("Street1");
                 }
+                
+                else if (raycastHit.collider.CompareTag("BarMirror"))
+                {
+                    //Sound
+                    SceneManager.LoadScene("StrangersHouse1");
+                }
 
             }
         }

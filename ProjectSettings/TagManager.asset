@@ -13,6 +13,7 @@ TagManager:
   - WashingMachine
   - Mirror
   - Whiskey
+  - BarMirror
   layers:
   - Default
   - TransparentFX

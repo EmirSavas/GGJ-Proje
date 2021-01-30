@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Street1.unity
     guid: 9eeda58446446194dab4e900bc8d0fd5
+  - enabled: 1
+    path: Assets/Scenes/BarToilet.unity
+    guid: 50c447ad5bba1f84da2bbbe1a7616eb6
+  - enabled: 1
+    path: Assets/Scenes/StrangersHouse1.unity
+    guid: 39a1587575887224ebb9c3f4c3d51e45
   m_configObjects: {}
