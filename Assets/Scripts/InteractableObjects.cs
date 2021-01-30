@@ -20,8 +20,7 @@ public class InteractableObjects : MonoBehaviour
     private bool isClicked = false;
 
     #endregion
-
-
+    
     #region Cigarette
 
     
@@ -36,28 +35,83 @@ public class InteractableObjects : MonoBehaviour
     private bool tvOpen = false;
 
     #endregion
-
-
+    
     #region Whiskey
 
     public Light wLight;
 
     #endregion
-
-
+    
     #region Phone
 
     public MeshRenderer phoneMesh;
+    private bool isPhoneClosed = false;
 
     #endregion
 
     #region WashingMachine
 
-    
+    public bool wMachineClicked = false;
 
     #endregion
 
     #region Mirror
+
+    
+
+    #endregion
+
+    #region Ashpit
+
+    public bool ashClicked = false;
+
+    #endregion
+
+    #region Pizza
+
+    private bool isPizzaClicked = false;
+
+    #endregion
+
+    #region Glass
+
+    
+
+    #endregion
+
+    #region Aspirator
+
+    private bool isAsOpen = false;
+    public Light asLight;
+
+    #endregion
+
+    #region Shower
+
+    private bool showerClicked = false;
+
+    #endregion
+
+    #region Tabela
+
+    private bool tabelaClicked = false;
+
+    #endregion
+
+    #region Çöp
+
+    
+
+    #endregion
+
+    #region Jukebox
+
+    private bool jboxClicked = false;
+    public Light barBottleLight;
+
+    #endregion
+
+    #region Bed
 
     
 
@@ -101,10 +155,40 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
                     //Cigarette Audio
+                    SceneManager.LoadScene("OkyanusKitchen");
+                }
+                
+                else if (raycastHit.collider.CompareTag("Ashpit"))
+                {
+                    ashClicked = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Aspirator"))
+                {
+                    if (isAsOpen)
+                    {
+                        asLight.intensity = 0f;
+                        isAsOpen = false;
+                    }
+                    else
+                    {
+                        asLight.intensity = 0.8f;
+                        isAsOpen = true;
+                    }
+                }
+                
+                else if (raycastHit.collider.CompareTag("Pizza") && ashClicked)
+                {
+                    isPizzaClicked = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Glass") && isPizzaClicked)
+                {
+                    //Phone Ring
                     SceneManager.LoadScene("OkyanusLivingRoom");
                 }
                 
-                else if (raycastHit.collider.CompareTag("TVController"))
+                else if (raycastHit.collider.CompareTag("TVController") && isPhoneClosed)
                 {
 
                     if (!tvOpen)
@@ -120,7 +204,6 @@ public class InteractableObjects : MonoBehaviour
                         tvMesh.material = basicGrey;
                         tvLight.intensity = 0f;
                         wLight.intensity = 0f;
-                        tvOpen = false;
                     }
                     
                 }
@@ -129,29 +212,74 @@ public class InteractableObjects : MonoBehaviour
                 {
                     //Phone Audio Stop
                     phoneMesh.material = basicGrey;
+                    isPhoneClosed = true;
                 }
                 
-                else if (raycastHit.collider.CompareTag("Whiskey") && tvOpen)
+                else if (raycastHit.collider.CompareTag("Whiskey") && tvOpen && isPhoneClosed)
                 {
                     //Whiskey Drink Sound
                     SceneManager.LoadScene("OkyanusBathroom");
                 }
                 
-                else if (raycastHit.collider.CompareTag("WashingMachine"))
+                else if (raycastHit.collider.CompareTag("Shower"))
                 {
                     //Sound
+                    showerClicked = true;
                 }
                 
-                else if (raycastHit.collider.CompareTag("Mirror"))
+                else if (raycastHit.collider.CompareTag("WashingMachine") && showerClicked)
+                {
+                    //Sound
+                    wMachineClicked = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Mirror") && wMachineClicked)
                 {
                     //Sound
                     SceneManager.LoadScene("Street1");
+                }
+                
+                else if (raycastHit.collider.CompareTag("Tabela"))
+                {
+                    //Sound
+                    tabelaClicked = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Cop") && tabelaClicked)
+                {
+                    //Sound
+                    SceneManager.LoadScene("Bar1");
+                }
+                
+                else if (raycastHit.collider.CompareTag("Jukebox"))
+                {
+                    //Sound
+                    barBottleLight.intensity = 3f;
+                    jboxClicked = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("Bottle") && jboxClicked)
+                {
+                    //Sound
+                    SceneManager.LoadScene("BarToilet");
                 }
                 
                 else if (raycastHit.collider.CompareTag("BarMirror"))
                 {
                     //Sound
                     SceneManager.LoadScene("StrangersHouse1");
+                }
+                
+                else if (raycastHit.collider.CompareTag("Bed"))
+                {
+                    //Sound
+                    SceneManager.LoadScene("StrangersHouse2");
+                }
+                
+                else if (raycastHit.collider.CompareTag("BalconyDoor"))
+                {
+                    //Sound
+                    SceneManager.LoadScene("StrangersBalkon");
                 }
 
             }

@@ -326,5 +326,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: YabanciEv_Daginik
       objectReference: {fileID: 0}
+    - target: {fileID: 3612993684106171868, guid: 2d3b339806ecbb34cb381b54d7fbf43f,
+        type: 3}
+      propertyPath: m_TagString
+      value: BalconyDoor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3b339806ecbb34cb381b54d7fbf43f, type: 3}
+--- !u!1 &345493801058275063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3612993684106171868, guid: 2d3b339806ecbb34cb381b54d7fbf43f,
+    type: 3}
+  m_PrefabInstance: {fileID: 345493801058275062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &345493801058275064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345493801058275063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0, y: 0.09160719, z: 0.09072669}
+  m_Center: {x: 0.000000007450578, y: 0, z: -0.024240013}
