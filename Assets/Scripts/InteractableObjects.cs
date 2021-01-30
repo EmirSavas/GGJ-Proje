@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class InteractableObjects : MonoBehaviour
 {
@@ -70,6 +71,7 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
                     //Cigarette Audio
+                    SceneManager.LoadScene("LivingRoom");
                 }
 
             }

@@ -33,7 +33,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3
+    value: 2
   threshold:
     overrideState: 1
     value: 1.5
@@ -966,7 +966,7 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.04507042
+          time: 0.01971831
           value: 0
           inSlope: -0
           outSlope: -0
@@ -984,7 +984,7 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.9633803
+          time: 0.9746479
           value: 0
           inSlope: 0
           outSlope: 0
@@ -1000,11 +1000,8 @@ MonoBehaviour:
       m_Range: 1
       cachedData:
       - 1
-      - 0.92027646
-      - 0.72277224
-      - 0.46998674
-      - 0.22441947
-      - 0.048569918
+      - 0.6534555
+      - 0.111388445
       - 0
       - 0
       - 0
@@ -1123,10 +1120,13 @@ MonoBehaviour:
       - 0
       - 0
       - 0
-      - 0.058199413
-      - 0.29545486
-      - 0.6091877
-      - 0.8828765
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0.016248856
+      - 0.32866874
+      - 0.7736401
   satVsSatCurve:
     overrideState: 0
     value:
