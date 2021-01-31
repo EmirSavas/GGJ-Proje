@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -89,6 +90,7 @@ public class InteractableObjects : MonoBehaviour
     public AudioSource pizzaBox;
     public AudioSource phoneRing1;
     public AudioSource charKimBu;
+    public AudioSource oksuruk;
 
     #endregion
 
@@ -165,12 +167,27 @@ public class InteractableObjects : MonoBehaviour
 
     #endregion
 
+    #region Delay
+
+    private bool delayCigarStart = false;
+    private float delay = 0f;
+
+    #endregion
+
+    #region Cigar2
+
+    public AudioSource cigarSound2;
+    private bool cigar2 = false;
+
+    #endregion
     
-    public bool delayCigarStart = false;
-    public float delay = 0f;
+    
+    
+
 
     void Update()
     {
+
         #region Raycast
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -234,8 +251,10 @@ public class InteractableObjects : MonoBehaviour
                 {
                     isPizzaClicked = true;
                     pizzaBox.Play();
-                    phoneRing1.PlayDelayed(1f);
-                    charKimBu.PlayDelayed(2.5f);
+                    oksuruk.PlayDelayed(1.5f);
+                    phoneRing1.PlayDelayed(8f);
+                    charKimBu.PlayDelayed(9.5f);
+                    
                 }
                 
                 else if (raycastHit.collider.CompareTag("Glass") && isPizzaClicked)
@@ -326,8 +345,8 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Bottle") && jboxClicked)
                 {
-                    WhiskeyOrder.PlayDelayed(0.1f);
-                    BottleSound.PlayDelayed(2f);
+                    WhiskeyOrder.PlayDelayed(1f);
+                    BottleSound.PlayDelayed(3f);
                     delayWhiskeyOrder = true;
                     //Delay Koymak Lazım. -Hazan
                     //SceneManager.LoadScene("BarToilet");
@@ -347,7 +366,13 @@ public class InteractableObjects : MonoBehaviour
                     Münasebet = true;
                 }
                 
-                else if (raycastHit.collider.CompareTag("BalconyDoor"))
+                else if (raycastHit.collider.CompareTag("Cigarette2"))
+                {
+                    cigarSound.Play();
+                    cigar2 = true;
+                }
+                
+                else if (raycastHit.collider.CompareTag("BalconyDoor") && cigar2)
                 {
                     //Balkon Sesi Yok.
                     //Sound

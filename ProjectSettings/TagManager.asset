@@ -25,6 +25,7 @@ TagManager:
   - Bottle
   - Bed
   - BalconyDoor
+  - Cigarette2
   layers:
   - Default
   - TransparentFX
