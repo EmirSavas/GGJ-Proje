@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InteractableObjects : MonoBehaviour
 {
@@ -180,9 +181,11 @@ public class InteractableObjects : MonoBehaviour
     private bool cigar2 = false;
 
     #endregion
-    
-    
-    
+
+
+    public bool fadeOutBlack;
+    public int fadeSpeed = 5;
+    public GameObject fadeOutImage;
 
 
     void Update()
