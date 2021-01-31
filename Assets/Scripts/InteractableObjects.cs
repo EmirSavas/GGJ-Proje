@@ -433,7 +433,7 @@ public class InteractableObjects : MonoBehaviour
         
         if (LeaveFromBarBool)
         {
-            SceneManager.LoadScene("StrangersHouse1");
+            SceneManager.LoadScene("BlankScene7");
             LeaveFromBarBool = false;
             LeaveFromBar = false;
         }
