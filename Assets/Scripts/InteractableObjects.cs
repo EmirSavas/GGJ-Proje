@@ -263,7 +263,7 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Glass") && isPizzaClicked)
                 {
                     //Phone Ring
-                    SceneManager.LoadScene("OkyanusLivingRoom");
+                    SceneManager.LoadScene("BlankScene3");
                 }
                 
                 else if (raycastHit.collider.CompareTag("TVController") && isPhoneClosed)
@@ -377,9 +377,7 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("BalconyDoor") && cigar2)
                 {
-                    //Balkon Sesi Yok.
-                    //Sound
-                    SceneManager.LoadScene("StrangersBalkon");
+                    SceneManager.LoadScene("BlankScene8");
                 }
 
             }
@@ -393,28 +391,28 @@ public class InteractableObjects : MonoBehaviour
 
         if (delayWhiskeyBool)
         {
-            SceneManager.LoadScene("OkyanusBathroom");
+            SceneManager.LoadScene("BlankScene4");
             delayWhiskeyBool = false;
             delayWhiskeyStart = false;
         }
         
         if (delayCigarBool)
         {
-            SceneManager.LoadScene("OkyanusKitchen");
+            SceneManager.LoadScene("BlankScene2");
             delayCigarBool = false;
             delayCigarStart = false;
         }
 
         if (mirrorDelay)
         {
-            SceneManager.LoadScene("Street1");
+            SceneManager.LoadScene("BlankScene5");
             mirrorDelay = false;
             MirrorTimerStart = false;
         }
         
         if (cop)
         {
-            SceneManager.LoadScene("Bar1");
+            SceneManager.LoadScene("BlankScene6");
             cop = false;
             copStart = false;
         }

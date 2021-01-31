@@ -36,8 +36,29 @@ EditorBuildSettings:
     path: Assets/Scenes/StrangersHouse2.unity
     guid: 8797e7aecc8ed114980d5a051172c503
   - enabled: 1
+    path: Assets/Scenes/BlankScene2.unity
+    guid: c968dd663e0fc574baf5ca946345dbc2
+  - enabled: 1
+    path: Assets/Scenes/BlankScene4.unity
+    guid: 902cfe35defcaea48b1a549150f62915
+  - enabled: 1
+    path: Assets/Scenes/BlankScene3.unity
+    guid: e53afdc36fca09d4d8076a3baaea94dc
+  - enabled: 1
+    path: Assets/Scenes/BlankScene7.unity
+    guid: 6f8fd7438d3204545868eb382c81969d
+  - enabled: 1
     path: Assets/Scenes/Ui.unity
     guid: 04dd7cebb1925fa4bbebc773c759fb02
+  - enabled: 1
+    path: Assets/Scenes/BlankScene8.unity
+    guid: 27d148ac7723bd048ad9f76f8ab5bcb8
+  - enabled: 1
+    path: Assets/Scenes/BlankScene5.unity
+    guid: cd26224474983934c85c9220e94f406a
+  - enabled: 1
+    path: Assets/Scenes/BlankScene6.unity
+    guid: b9f1b2d829bfa144c82f34f42ff5f345
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 4c28c9ad17914fe4585a5f5d0c47dfed
