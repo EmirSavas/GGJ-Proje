@@ -15,19 +15,32 @@ public class TypeWriter : MonoBehaviour
     public GameObject closeButton;
     public GameObject panel;
     public bool _closedButton = false;
+    public InteractableObjects  Script;
+    private float Delay;
     
     
     void Start()
     {
         panel.GetComponent<Animator>().Play("PopUp");
         StartCoroutine(Type());
-
     }
     void Update()
     {
-        if (textDisplay.text == sentences[index] && _closedButton == false)
+        if (Script.Cigarette)
         {
-            closeButton.SetActive(true);
+            panel.GetComponent<Animator>().Play("PopUp");
+            StartCoroutine(Type());
+        }
+        
+        if (textDisplay.text == sentences[index])
+        {
+            Delay += Time.deltaTime;
+
+            if (Delay >= 3f)
+            {
+                ClosePanel();
+                Delay = 0f;
+            }
         }
     }
 
@@ -45,8 +58,8 @@ public class TypeWriter : MonoBehaviour
     {
         textDisplay.enabled = false;
         panel.SetActive(false);
-        _closedButton = true;
-        closeButton.SetActive(false);
+        //_closedButton = true;
+        //closeButton.SetActive(false);
     }
     
     /*

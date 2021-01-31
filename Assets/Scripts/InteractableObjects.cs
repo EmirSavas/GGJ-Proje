@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ using UnityEngine.UI;
 public class InteractableObjects : MonoBehaviour
 {
 
+    public TextMeshProUGUI Text;
+    
     #region LampLevel1
 
     public Light level1LampLight;
@@ -28,6 +31,7 @@ public class InteractableObjects : MonoBehaviour
 
     public AudioSource cigarSound;
     private bool delayCigarBool = false;
+    public bool Cigarette;
 
     #endregion
 
@@ -186,7 +190,15 @@ public class InteractableObjects : MonoBehaviour
     public bool fadeOutBlack;
     public int fadeSpeed = 5;
     public GameObject fadeOutImage;
+    
+    private float Delay;
+    public Animator panel;
 
+    private void Start()
+    {
+        panel = GetComponent<Animator>();
+        panel.Play("PopUp");
+    }
 
     void Update()
     {
@@ -202,6 +214,8 @@ public class InteractableObjects : MonoBehaviour
             {
                 if (raycastHit.collider.CompareTag("LampLevel1"))
                 {
+                    
+                    Text.text = "Where did I put my cigarettes?";
                     if (!level1LampOpen)
                     {
                         level1LampLight.intensity = 5f;
@@ -227,12 +241,16 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
+                    
+                    Cigarette = true;
                     cigarSound.Play();
                     delayCigarStart = true;
+                    
                 }
                 
                 else if (raycastHit.collider.CompareTag("Ashpit"))
                 {
+                    //Bakcam
                     ashClicked = true;
                 }
                 
@@ -252,18 +270,31 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Pizza") && ashClicked)
                 {
+                    Text.text = "The perfect pizza to turn my stomach to a dump.";
                     isPizzaClicked = true;
                     pizzaBox.Play();
                     oksuruk.PlayDelayed(1.5f);
                     phoneRing1.PlayDelayed(8f);
                     charKimBu.PlayDelayed(9.5f);
+                    //Olmadı
+                    if (charKimBu.isPlaying)
+                    {
+                        Delay += Time.deltaTime;
+
+                        if (Delay >= 9.5f)
+                        {
+                            Text.text = "Who is this now?";
+                            Delay = 0f;
+                        }
+                    }
                     
                 }
                 
                 else if (raycastHit.collider.CompareTag("Glass") && isPizzaClicked)
                 {
                     //Phone Ring
-                    SceneManager.LoadScene("BlankScene3");
+                    SceneManager.LoadScene("OkyanusLivingRoom");
+                    Text.text ="Phone... phone...";
                 }
                 
                 else if (raycastHit.collider.CompareTag("TVController") && isPhoneClosed)
@@ -297,12 +328,25 @@ public class InteractableObjects : MonoBehaviour
                     phoneMesh.material = basicGrey;
                     isPhoneClosed = true;
                     ugrasamam.Play();
+                    Text.text ="I can’t deal with you right now at all.";
                     phoneRing2.Stop();
                     whiskeyChar.PlayDelayed(5f);
+                    
+                    if (whiskeyChar.isPlaying)
+                    {
+                        Delay += Time.deltaTime;
+
+                        if (Delay >= 5f)
+                        {
+                            Text.text = "I can only get rid of this disgusting taste of pizza with whiskey.";
+                            Delay = 0f;
+                        }
+                    }
                 }
                 
                 else if (raycastHit.collider.CompareTag("Whiskey") && tvOpen && isPhoneClosed)
                 {
+                    Text.text = "Oh... That was good.";
                     siseSound.Play();
                     buIyi.PlayDelayed(0.5f);
                     delayWhiskeyStart = true;
@@ -310,24 +354,29 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Shower"))
                 {
+                    //Geçiş Cümlesi
+                    //Text.text = "Scrubbing these stained feelings sheds a false light on my calloused heart.";
                     //Sound
                     showerClicked = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("WashingMachine") && showerClicked)
                 {
+                    Text.text = "I forgot to empty the laundry again... Perfect.";
                     wMachineClicked = true;
                     camasir.Play();
                 }
                 
                 else if (raycastHit.collider.CompareTag("Mirror") && wMachineClicked)
                 {
+                    Text.text = "I look absolutely great, really.";
                     harika.Play();
                     MirrorTimerStart = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Tabela"))
                 {
+                    Text.text = "For once, I wish a bus that arrives on time. Whatever...";
                     otobus.Play();
                     tabelaClicked = true;
                 }
@@ -336,6 +385,7 @@ public class InteractableObjects : MonoBehaviour
                 {
                     _throw.Play();
                     birSise.PlayDelayed(0.5f);
+                    Text.text = "Another bottle finished, good.";
                     copStart = true;
                 }
                 
@@ -349,6 +399,7 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Bottle") && jboxClicked)
                 {
                     WhiskeyOrder.PlayDelayed(1f);
+                    Text.text = "Double whiskey, no ice.";
                     BottleSound.PlayDelayed(3f);
                     delayWhiskeyOrder = true;
                     //Delay Koymak Lazım. -Hazan
@@ -359,6 +410,7 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("BarMirror"))
                 {
                     RutinAudio.Play();
+                    Text.text = "Are we suprised that Okyanus ended another night like this. Of course not. *Sigh* Me and my routines...";
                     LeaveFromBar = true;
                     //SceneManager.LoadScene("StrangersHouse1");
                 }
@@ -391,28 +443,33 @@ public class InteractableObjects : MonoBehaviour
 
         if (delayWhiskeyBool)
         {
-            SceneManager.LoadScene("BlankScene4");
+            SceneManager.LoadScene("OkyanusBathroom");
+            panel.Play("PopUp");
             delayWhiskeyBool = false;
             delayWhiskeyStart = false;
         }
         
         if (delayCigarBool)
         {
-            SceneManager.LoadScene("BlankScene2");
+            SceneManager.LoadScene("OkyanusKitchen");
+            panel.Play("PopUp");
             delayCigarBool = false;
             delayCigarStart = false;
+            //Text.text = "Ahh… this is why I like the first cigarette of the day.";
         }
 
         if (mirrorDelay)
         {
-            SceneManager.LoadScene("BlankScene5");
+            SceneManager.LoadScene("Street1");
+            panel.Play("PopUp");
             mirrorDelay = false;
             MirrorTimerStart = false;
         }
         
         if (cop)
         {
-            SceneManager.LoadScene("BlankScene6");
+            SceneManager.LoadScene("Bar1");
+            panel.Play("PopUp");
             cop = false;
             copStart = false;
         }
@@ -427,6 +484,7 @@ public class InteractableObjects : MonoBehaviour
         if (delayWhiskeyOrderBool)
         {
             SceneManager.LoadScene("BarToilet");
+            panel.Play("PopUp");
             delayWhiskeyOrderBool = false;
             delayWhiskeyOrder = false;
         }
