@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StrangersHouse2.unity
     guid: 8797e7aecc8ed114980d5a051172c503
+  - enabled: 1
+    path: Assets/Scenes/Ui.unity
+    guid: 04dd7cebb1925fa4bbebc773c759fb02
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 4c28c9ad17914fe4585a5f5d0c47dfed
   m_configObjects: {}
