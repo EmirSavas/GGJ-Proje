@@ -132,11 +132,35 @@ public class InteractableObjects : MonoBehaviour
 
     private bool jboxClicked = false;
     public Light barBottleLight;
+    
+    public AudioSource jBoxMusic;
+    public AudioSource WhiskeyOrder;
+    public AudioSource BottleSound;
+    
+    private bool delayWhiskeyOrder = false;
+    private float delayWhiskeyOrdTimer =0f;
+    private bool delayWhiskeyOrderBool = false;
+    
+
+    #endregion
+    
+    #region BarMirror
+
+    public AudioSource RutinAudio;
+    
+    private bool LeaveFromBar = false;
+    private float LeaveFromBarTimer =0f;
+    private bool LeaveFromBarBool = false;
 
     #endregion
 
     #region Bed
 
+    public AudioSource bedvoices;
+    
+    private bool Münasebet = false;
+    private float MünasebetTimer = 0f;
+    private bool MünasebetBool = false;
     
 
     #endregion
@@ -295,31 +319,37 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Jukebox"))
                 {
-                    //Sound
+                    jBoxMusic.PlayDelayed(0.5f);
                     barBottleLight.intensity = 3f;
                     jboxClicked = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Bottle") && jboxClicked)
                 {
-                    //Sound
-                    SceneManager.LoadScene("BarToilet");
+                    WhiskeyOrder.PlayDelayed(0.1f);
+                    BottleSound.PlayDelayed(2f);
+                    delayWhiskeyOrder = true;
+                    //Delay Koymak Lazım. -Hazan
+                    //SceneManager.LoadScene("BarToilet");
+                    //delayWhiskeyOrder = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("BarMirror"))
                 {
-                    //Sound
-                    SceneManager.LoadScene("StrangersHouse1");
+                    RutinAudio.Play();
+                    LeaveFromBar = true;
+                    //SceneManager.LoadScene("StrangersHouse1");
                 }
                 
                 else if (raycastHit.collider.CompareTag("Bed"))
                 {
-                    //Sound
-                    SceneManager.LoadScene("StrangersHouse2");
+                    bedvoices.Play();
+                    Münasebet = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("BalconyDoor"))
                 {
+                    //Balkon Sesi Yok.
                     //Sound
                     SceneManager.LoadScene("StrangersBalkon");
                 }
@@ -346,7 +376,7 @@ public class InteractableObjects : MonoBehaviour
             delayCigarBool = false;
             delayCigarStart = false;
         }
-        
+
         if (mirrorDelay)
         {
             SceneManager.LoadScene("Street1");
@@ -361,6 +391,49 @@ public class InteractableObjects : MonoBehaviour
             copStart = false;
         }
 
+        if (MünasebetBool)
+        {
+            SceneManager.LoadScene("StrangersHouse2");
+            Münasebet = false;
+            MünasebetBool = false;
+        }
+
+        if (delayWhiskeyOrderBool)
+        {
+            SceneManager.LoadScene("BarToilet");
+            delayWhiskeyOrderBool = false;
+            delayWhiskeyOrder = false;
+        }
+        
+        if (LeaveFromBarBool)
+        {
+            SceneManager.LoadScene("StrangersHouse1");
+            LeaveFromBarBool = false;
+            LeaveFromBar = false;
+        }
+        
+        if (Münasebet)
+        {
+            MünasebetTimer += Time.deltaTime;
+
+            if (MünasebetTimer >= 5f)
+            {
+                MünasebetBool = true;
+                MünasebetTimer = 0f;
+            }
+        }
+        
+        if (LeaveFromBar)
+        {
+            LeaveFromBarTimer += Time.deltaTime;
+
+            if (LeaveFromBarTimer >= 10f)
+            {
+                LeaveFromBarBool = true;
+                LeaveFromBarTimer = 0f;
+            }
+        }
+
         if (delayCigarStart)
         {
             delay += Time.deltaTime;
@@ -369,6 +442,17 @@ public class InteractableObjects : MonoBehaviour
             {
                 delayCigarBool = true;
                 delay = 0f;
+            }
+        }
+        
+        if (delayWhiskeyOrder)
+        {
+            delayWhiskeyOrdTimer += Time.deltaTime;
+
+            if (delayWhiskeyOrdTimer >= 5f)
+            {
+                delayWhiskeyOrderBool = true;
+                delayWhiskeyOrdTimer = 0f;
             }
         }
         
