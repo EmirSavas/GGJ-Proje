@@ -18,12 +18,14 @@ public class InteractableObjects : MonoBehaviour
     public AudioSource lampSound;
     public AudioSource lampBuzzSound;
     private bool isClicked = false;
+    public AudioSource charCigar;
 
     #endregion
     
     #region Cigarette
 
-    
+    public AudioSource cigarSound;
+    private bool delayCigarBool = false;
 
     #endregion
 
@@ -33,12 +35,19 @@ public class InteractableObjects : MonoBehaviour
     public MeshRenderer tvMesh;
     public Material tvMatLight;
     private bool tvOpen = false;
+    public AudioSource kumanda;
+    public AudioSource tvSound;
 
     #endregion
     
     #region Whiskey
 
     public Light wLight;
+    public AudioSource siseSound;
+    public bool delayWhiskeyBool = false;
+    public AudioSource buIyi;
+    private bool delayWhiskeyStart = false;
+    private float delayWhiskeyTimer = 0f;
 
     #endregion
     
@@ -46,18 +55,25 @@ public class InteractableObjects : MonoBehaviour
 
     public MeshRenderer phoneMesh;
     private bool isPhoneClosed = false;
+    public AudioSource ugrasamam;
+    public AudioSource phoneRing2;
+    public AudioSource whiskeyChar;
 
     #endregion
 
     #region WashingMachine
 
     public bool wMachineClicked = false;
+    public AudioSource camasir;
 
     #endregion
 
     #region Mirror
 
-    
+    public AudioSource harika;
+    private float MirrorTimer = 0f;
+    private bool MirrorTimerStart = false;
+    private bool mirrorDelay = false;
 
     #endregion
 
@@ -70,6 +86,9 @@ public class InteractableObjects : MonoBehaviour
     #region Pizza
 
     private bool isPizzaClicked = false;
+    public AudioSource pizzaBox;
+    public AudioSource phoneRing1;
+    public AudioSource charKimBu;
 
     #endregion
 
@@ -95,12 +114,17 @@ public class InteractableObjects : MonoBehaviour
     #region Tabela
 
     private bool tabelaClicked = false;
+    public AudioSource otobus;
 
     #endregion
 
     #region Çöp
 
-    
+    public AudioSource _throw;
+    public AudioSource birSise;
+    private float copTimer = 0f;
+    private bool copStart = false;
+    private bool cop = false;
 
     #endregion
 
@@ -116,11 +140,15 @@ public class InteractableObjects : MonoBehaviour
     
 
     #endregion
-    
 
+    
+    public bool delayCigarStart = false;
+    public float delay = 0f;
 
     void Update()
     {
+        #region Raycast
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
 
@@ -139,6 +167,7 @@ public class InteractableObjects : MonoBehaviour
                         lampBuzzSound.PlayDelayed(0.5f);
                         level1LampOpen = true;
                         isClicked = true;
+                        charCigar.PlayDelayed(1f);
                     }
                     else if(level1LampOpen)
                     {
@@ -154,8 +183,8 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("Cigarette") && isClicked)
                 {
-                    //Cigarette Audio
-                    SceneManager.LoadScene("OkyanusKitchen");
+                    cigarSound.Play();
+                    delayCigarStart = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Ashpit"))
@@ -180,6 +209,9 @@ public class InteractableObjects : MonoBehaviour
                 else if (raycastHit.collider.CompareTag("Pizza") && ashClicked)
                 {
                     isPizzaClicked = true;
+                    pizzaBox.Play();
+                    phoneRing1.PlayDelayed(1f);
+                    charKimBu.PlayDelayed(2.5f);
                 }
                 
                 else if (raycastHit.collider.CompareTag("Glass") && isPizzaClicked)
@@ -190,6 +222,8 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("TVController") && isPhoneClosed)
                 {
+                    
+                    kumanda.Play();
 
                     if (!tvOpen)
                     {
@@ -197,28 +231,35 @@ public class InteractableObjects : MonoBehaviour
                         tvLight.intensity = 3f;
                         wLight.intensity = 5f;
                         tvOpen = true;
+                        tvSound.PlayDelayed(0.1f);
                         
                     }
+                    
                     else if (tvOpen)
                     {
                         tvMesh.material = basicGrey;
                         tvLight.intensity = 0f;
                         wLight.intensity = 0f;
+                        tvOpen = false;
+                        tvSound.Stop();
                     }
                     
                 }
                 
                 else if (raycastHit.collider.CompareTag("Phone"))
                 {
-                    //Phone Audio Stop
                     phoneMesh.material = basicGrey;
                     isPhoneClosed = true;
+                    ugrasamam.Play();
+                    phoneRing2.Stop();
+                    whiskeyChar.PlayDelayed(5f);
                 }
                 
                 else if (raycastHit.collider.CompareTag("Whiskey") && tvOpen && isPhoneClosed)
                 {
-                    //Whiskey Drink Sound
-                    SceneManager.LoadScene("OkyanusBathroom");
+                    siseSound.Play();
+                    buIyi.PlayDelayed(0.5f);
+                    delayWhiskeyStart = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Shower"))
@@ -229,26 +270,27 @@ public class InteractableObjects : MonoBehaviour
                 
                 else if (raycastHit.collider.CompareTag("WashingMachine") && showerClicked)
                 {
-                    //Sound
                     wMachineClicked = true;
+                    camasir.Play();
                 }
                 
                 else if (raycastHit.collider.CompareTag("Mirror") && wMachineClicked)
                 {
-                    //Sound
-                    SceneManager.LoadScene("Street1");
+                    harika.Play();
+                    MirrorTimerStart = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Tabela"))
                 {
-                    //Sound
+                    otobus.Play();
                     tabelaClicked = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Cop") && tabelaClicked)
                 {
-                    //Sound
-                    SceneManager.LoadScene("Bar1");
+                    _throw.Play();
+                    birSise.PlayDelayed(0.5f);
+                    copStart = true;
                 }
                 
                 else if (raycastHit.collider.CompareTag("Jukebox"))
@@ -284,5 +326,87 @@ public class InteractableObjects : MonoBehaviour
 
             }
         }
+
+        
+
+        
+
+        #endregion
+
+        if (delayWhiskeyBool)
+        {
+            SceneManager.LoadScene("OkyanusBathroom");
+            delayWhiskeyBool = false;
+            delayWhiskeyStart = false;
+        }
+        
+        if (delayCigarBool)
+        {
+            SceneManager.LoadScene("OkyanusKitchen");
+            delayCigarBool = false;
+            delayCigarStart = false;
+        }
+        
+        if (mirrorDelay)
+        {
+            SceneManager.LoadScene("Street1");
+            mirrorDelay = false;
+            MirrorTimerStart = false;
+        }
+        
+        if (cop)
+        {
+            SceneManager.LoadScene("Bar1");
+            cop = false;
+            copStart = false;
+        }
+
+        if (delayCigarStart)
+        {
+            delay += Time.deltaTime;
+
+            if (delay >= 5f)
+            {
+                delayCigarBool = true;
+                delay = 0f;
+            }
+        }
+        
+        if (delayWhiskeyStart)
+        {
+            delayWhiskeyTimer += Time.deltaTime;
+
+            if (delayWhiskeyTimer >= 5f)
+            {
+                delayWhiskeyBool = true;
+                delayWhiskeyTimer = 0f;
+            }
+        }
+        
+        if (MirrorTimerStart)
+        {
+            MirrorTimer += Time.deltaTime;
+
+            if (MirrorTimer >= 5f)
+            {
+                mirrorDelay = true;
+                MirrorTimer = 0f;
+            }
+        }
+        
+        if (copStart)
+        {
+            copTimer += Time.deltaTime;
+
+            if (copTimer >= 5f)
+            {
+                cop = true;
+                copTimer = 0f;
+            }
+        }
+        
+        
+        
     }
+
 }
